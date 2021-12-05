@@ -9,3 +9,27 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Artist {
+  id     String  @id @default(cuid())
+  name   String
+  albums Album[]
+}
+
+model Album {
+  id          String  @id @default(cuid())
+  title       String
+  price       Decimal
+  albumArtUrl String?
+  artist      Artist? @relation(fields: [artistId], references: [id])
+  genre       Genre?  @relation(fields: [genreId], references: [id])
+  artistId    String?
+  genreId     String?
+}
+
+model Genre {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+  albums      Album[]
+}
