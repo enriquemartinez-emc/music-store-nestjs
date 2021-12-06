@@ -1,14 +1,14 @@
-import { Album as AlbumModel } from '.prisma/client';
+import { Genre as GenreModel } from '.prisma/client';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 
-export class GetAlbumsQuery {}
+export class GetGenresQuery {}
 
-@QueryHandler(GetAlbumsQuery)
-export class GetAlbumsHandler implements IQueryHandler<GetAlbumsQuery> {
+@QueryHandler(GetGenresQuery)
+export class GetGenresHandler implements IQueryHandler<GetGenresQuery> {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async execute(): Promise<AlbumModel[]> {
-    return this.prismaService.album.findMany();
+  async execute(): Promise<GenreModel[]> {
+    return this.prismaService.genre.findMany();
   }
 }

@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ArtistsController } from './artists.controller';
-import { GetArtistsQuery } from './list';
+import { GetArtistsHandler } from './list';
 
 @Module({
   controllers: [ArtistsController],
-  providers: [GetArtistsQuery],
+  providers: [GetArtistsHandler],
 })
 export class ArtistsModule {}
